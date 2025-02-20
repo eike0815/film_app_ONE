@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.name }}'s Movies - MovieWeb App{% endblock %}
+
+{% block content %}
+    <h1>{{ user.name }}'s Favorite Movies</h1>
+<ul>
+    {% for movie in movies %}
+    <li>
+        <div class="movie-item">
+            <p class="movie-title">{{ movie.name }} ({{ movie.year }}) - Directed by {{ movie.director }} - Rating: {{ movie.rating }}</p>
+            <div class="movie-actions">
+                <a href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}" class="btn btn-edit">Edit</a>
+                <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-delete">Delete</button>
+                </form>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+    
+    <a href="{{ url_for('add_movie', user_id=user.id) }}">Add a New Movie</a>
+    <br>
+    <a href="{{ url_for('list_users') }}">Back to Users</a>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to the Movie App</h1>
+    <p>Manage your favorite movies and users easily.</p>
+    <a href="{{ url_for('list_users') }}">
+        <button>Enter</button>
+    </a>
+{% endblock %}
